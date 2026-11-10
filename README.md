@@ -1,70 +1,70 @@
 # Open Gym
 
-App de treino de musculação **self-hosted**, feito 100% em **.NET**: planeje rotinas, registre treinos pelo celular (inclusive sem sinal na academia), acompanhe sua evolução e use IA para montar e ajustar planos a partir dos seus próprios dados.
+A **self-hosted** strength training app built entirely on **.NET**: plan your routines, log workouts from your phone (even with no signal at the gym), track your progress, and use AI to build and adjust plans from your own data.
 
-> **Status:** em planejamento. Ainda não há código; este repositório está sendo estruturado.
+> **Status:** planning. There is no code yet; this repository is still being set up.
 
-## Sobre o projeto
+## About
 
-O Open Gym é uma evolução pessoal do [openGym](https://github.com/DuarteSantos8/openGym), de Duarte Santos, reescrita do zero em .NET. A ideia é manter o que o original faz bem (planejamento de rotinas, treino guiado, progressão automática, AI Coach) e resolver pontos estruturais:
+Open Gym is a personal evolution of [openGym](https://github.com/DuarteSantos8/openGym) by Duarte Santos, rewritten from scratch in .NET. The goal is to keep what the original does well (routine planning, guided workouts, automatic progression, an AI coach) and fix a few structural points:
 
-- **Banco relacional** em vez de arquivos JSON por usuário, para consultar, relatar e dar contexto à IA de forma eficiente.
-- **Papéis de verdade** (Administrador e Usuário), com uma área administrativa completa em vez de uma lista de IDs em variável de ambiente.
-- **IA integrada** por uma abstração única, para trocar de provedor sem mudar código.
+- **A relational database** instead of per-user JSON files, so data is easy to query, report on, and feed to the AI.
+- **Real roles** (Admin and User), with a full admin area instead of a list of IDs in an environment variable.
+- **Built-in AI** behind a single abstraction, so the provider can be swapped without code changes.
 
-## Funcionalidades planejadas
+## Planned features
 
-**Para o usuário**
+**For users**
 
-- Rotinas por dia da semana ou por rotação (A, B, C), programas, supersets, drop sets e rest-pause
-- Catálogo de exercícios com busca, filtros por músculo e equipamento, e exercícios próprios
-- Treino guiado: cargas pré-preenchidas, timer de descanso, detecção de PR, RIR/RPE e cálculo de anilhas
-- Funcionamento offline durante o treino, com sincronização depois
-- Progresso: motor de progressão, 1RM estimado, gráficos, peso corporal e medidas
-- Importação do histórico do openGym e de outros apps (Strong, Hevy)
+- Routines by day of the week or by rotation (A, B, C), programs, supersets, drop sets, and rest-pause
+- Exercise catalog with search, filters by muscle and equipment, and custom exercises
+- Guided workouts: prefilled weights, rest timer, PR detection, RIR/RPE, and plate calculator
+- Offline support during workouts, syncing afterwards
+- Progress: progression engine, estimated 1RM, charts, body weight, and measurements
+- Import history from openGym and other apps (Strong, Hevy)
 
-**Assistente de IA**
+**AI assistant**
 
-- Gerador de plano a partir de uma entrevista curta (objetivo, dias, equipamento, lesões)
-- Resumo pós-treino com PRs e comparação com semanas anteriores
-- Chat com seus dados ("quanto evoluí no supino em 3 meses?"), consultando o banco por *tool calling*
-- Sugestões de ajuste de plano (estagnação, deload) que o usuário aceita ou recusa
+- Plan generator from a short interview (goal, days, equipment, injuries)
+- Post-workout summary with PRs and comparison with previous weeks
+- Chat with your data ("how much has my bench press improved in 3 months?"), querying the database through tool calling
+- Plan adjustment suggestions (plateaus, deloads) that the user accepts or rejects
 
-**Área administrativa**
+**Admin area**
 
-- Gestão de usuários: convidar, bloquear, trocar papel, redefinir acesso
-- Cadastro aberto ou só por convite
-- Configuração da IA (provedor, modelo, limite de uso por usuário)
-- Log de auditoria, saúde do sistema e backup
+- User management: invite, block, change role, reset access
+- Open sign-up or invite-only
+- AI configuration (provider, model, per-user usage limits)
+- Audit log, system health, and backups
 
-## Stack
+## Tech stack
 
-| Camada | Tecnologia |
+| Layer | Technology |
 | --- | --- |
-| Interface | Blazor WebAssembly como PWA instalável |
+| Frontend | Blazor WebAssembly as an installable PWA |
 | Backend | ASP.NET Core (.NET 10) |
-| Banco de dados | PostgreSQL com EF Core |
-| Autenticação | ASP.NET Core Identity com papéis e passkeys |
-| IA | OpenAI via Microsoft.Extensions.AI (`IChatClient`) |
-| Deploy | Docker Compose |
+| Database | PostgreSQL with EF Core |
+| Authentication | ASP.NET Core Identity with roles and passkeys |
+| AI | OpenAI via Microsoft.Extensions.AI (`IChatClient`) |
+| Deployment | Docker Compose |
 
-A estrutura da solução ainda está sendo definida e será documentada aqui quando o código chegar.
+The solution structure is still being defined and will be documented here once code lands.
 
 ## Roadmap
 
-1. **Fundação:** solução, banco, autenticação com papéis, Docker Compose e CI
-2. **Catálogo** de exercícios
-3. **Planejamento** de rotinas e agenda
-4. **Treino guiado** com modo offline
-5. **Progresso** e gráficos
-6. **Área administrativa**
-7. **IA:** gerador de plano, resumo pós-treino e chat
-8. **Importação** de dados de outros apps
+1. **Foundation:** solution, database, authentication with roles, Docker Compose, and CI
+2. **Exercise catalog**
+3. **Planning:** routines and schedule
+4. **Guided workouts** with offline mode
+5. **Progress** and charts
+6. **Admin area**
+7. **AI:** plan generator, post-workout summary, and chat
+8. **Import** from other apps
 
-## Créditos e licença
+## Credits and license
 
-Este projeto é inspirado no [openGym](https://github.com/DuarteSantos8/openGym) e pode portar partes da sua lógica de domínio (como progressão, 1RM e recuperação muscular). Todo o crédito pelas ideias e pelo trabalho original é do autor e dos contribuidores do openGym.
+This project is inspired by [openGym](https://github.com/DuarteSantos8/openGym) and may port parts of its domain logic (such as progression, 1RM, and muscle recovery). All credit for the original ideas and work goes to the openGym author and contributors.
 
-Por isso, o Open Gym é distribuído sob a mesma licença, a **GNU Affero General Public License v3.0** ([LICENSE](LICENSE)). Na prática: você pode usar, modificar e hospedar livremente, mas se disponibilizar uma instância modificada para outras pessoas pela rede, precisa oferecer o código-fonte a elas.
+For that reason, Open Gym is released under the same license, the **GNU Affero General Public License v3.0** ([LICENSE](LICENSE)). In short: you are free to use, modify, and host it, but if you make a modified instance available to other people over a network, you must offer them its source code.
 
-As fotos e animações de exercícios do openGym **não** são usadas aqui, pois são licenciadas separadamente apenas para aquele app. A mídia deste projeto virá de fontes abertas ou do próprio usuário.
+openGym's exercise photos and animations are **not** used here, since they are licensed separately for that app only. Media for this project will come from open sources or from users themselves.
