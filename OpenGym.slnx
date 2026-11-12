@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OpenGym.Domain/OpenGym.Domain.csproj" />
+  </Folder>
+</Solution>
